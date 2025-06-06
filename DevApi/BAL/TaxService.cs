@@ -48,7 +48,7 @@ namespace MyApp.BAL
             string proc = "Proc_SaveTax";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 2);
-            queryParameter.Add("@TaxId", tax.TaxId);
+            queryParameter.Add("@TaxGuid", tax.TaxGuid);
             queryParameter.Add("@TaxName", tax.TaxName);
             queryParameter.Add("@TaxPercentage", tax.TaxPercentage);
             queryParameter.Add("@createdBy", tax.CreatedBy);
