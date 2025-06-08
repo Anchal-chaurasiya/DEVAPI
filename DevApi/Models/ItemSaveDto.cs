@@ -6,7 +6,7 @@ namespace MyApp.Models
 {
     public class ItemSaveDto : BaseDto
     {
-        public Guid ItemGuid { get; set; }
+        public Guid? ItemGuid { get; set; }
         public long ItemId { get; set; }
         public string? ItemCode { get; set; }
         public string ItemName { get; set; }
