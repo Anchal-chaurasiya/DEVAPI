@@ -33,7 +33,7 @@ namespace DevApi.Controllers
                 return BadRequest(result);
         }
 
-        [HttpPut("UpdateItemGroupService")]
+        [HttpPost("UpdateItemGroupService")]
         public IActionResult UpdateItemGroup([FromBody] CommonRequestDto<ItemGroupDto> request)
         {
             var result = itemGroupService.UpdateItemGroup(request);
@@ -43,15 +43,15 @@ namespace DevApi.Controllers
                 return BadRequest(result);
         }
 
-        [HttpGet("GetItemGroupListService")]
-        public ActionResult<List<ItemGroupDto>> GetItemGroupList()
+        [HttpPost("GetItemGroupListService")]
+        public ActionResult<List<ItemGroupDto>> GetItemGroupList([FromBody] CommonRequestDto<int> request)
         {
-            var list = itemGroupService.GetItemGroupList();
+            var list = itemGroupService.GetItemGroupList(request);
             return Ok(list);
         }
 
-        [HttpGet("GetItemGroupService")]
-        public ActionResult<ItemGroupDto> GetItemGroupByGuid(CommonRequestDto<Guid> commonRequest)
+        [HttpPost("GetItemGroupService")]
+        public ActionResult<CommonResponseDto<ItemGroupDto>> GetItemGroupByGuid(CommonRequestDto<Guid> commonRequest)
         {
             var item = itemGroupService.GetItemGroupByGuid(commonRequest);
             if (item != null)

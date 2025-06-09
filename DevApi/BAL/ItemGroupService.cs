@@ -1,7 +1,8 @@
-using MyApp.Models;
+using Azure.Core;
+using Dapper;
 using DevApi.Models.Common;
 using DevApi.Models.Enums;
-using Dapper;
+using MyApp.Models;
 using System;
 using System.Collections.Generic;
 
@@ -64,25 +65,39 @@ namespace MyApp.BAL
             return response;
         }
 
-        public List<ItemGroupDto> GetItemGroupList()
+        public CommonResponseDto<List<ItemGroupDto>>  GetItemGroupList(CommonRequestDto<int> request)
         {
+            var response = new CommonResponseDto<List<ItemGroupDto>>
+            {
+                CompanyId = request.CompanyId,
+                PageSize = request.PageSize,
+                PageRecordCount = request.PageRecordCount
+            };
             string proc = "Proc_SaveItemGroup";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 3);
 
-            var res = DBHelperDapper.GetAllModel<List<ItemGroupDto>>(proc, queryParameter);
-            return res;
+            var list = DBHelperDapper.GetAllModelList<ItemGroupDto>(proc, queryParameter);
+            response.Data = list;
+            response.Flag = 1;
+            response.Message = "Success";
+            return response;
         }
 
-        public ItemGroupDto GetItemGroupByGuid(CommonRequestDto<Guid> commonRequest)
+        public CommonResponseDto<ItemGroupDto> GetItemGroupByGuid(CommonRequestDto<Guid> commonRequest)
         {
+            var response = new CommonResponseDto<ItemGroupDto>();
+
             string proc = "Proc_SaveItemGroup";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 4);
             queryParameter.Add("@ItemGroupGuid", commonRequest.Data);
 
-            var res = DBHelperDapper.GetAllModel<ItemGroupDto>(proc, queryParameter);
-            return res;
+            var itemGroup = DBHelperDapper.GetAllModel<ItemGroupDto>(proc, queryParameter);
+            response.Data = itemGroup;
+            response.Flag = itemGroup != null ? 1 : 0;
+            response.Message = itemGroup != null ? "Success" : "Not found";
+            return response;
         }
 
         public List<ItemGroupDto> GetItemGroupDropdown()
