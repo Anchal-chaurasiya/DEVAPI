@@ -2,16 +2,17 @@ using DevApi;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Add services to the container
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddApplicationService();
 
+// JWT Authentication
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -30,55 +31,43 @@ builder.Services.AddAuthentication(options =>
             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     };
 });
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
     {
-        policy.WithOrigins("http://localhost:4200",
-            "http://localhost:82"
-
-
-            )
+        policy.WithOrigins("http://localhost:4200", "http://localhost:82", "https://68.178.164.44:82", "http://68.178.164.44:82")
               .AllowAnyHeader()
               .AllowAnyMethod()
-              .AllowCredentials(); // Optional, only if you're sending credentials like cookies
+              .AllowCredentials();
     });
 });
 
-
-
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
+// === ORDER MATTERS ===
 
-
-app.UseSwagger();
+// Enable Swagger
+app.UseSwagger(); // this must come BEFORE UseSwaggerUI
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-    c.RoutePrefix = "swagger"; // Ensures Swagger is accessible at /swagger
+    c.RoutePrefix = "swagger"; // access via /swagger
 });
 
-
-//app.UseHttpsRedirection();
-
+// Uncomment only if you want HTTPS
+// app.UseHttpsRedirection();
 
 app.UseCors("AllowAngularApp");
 
-app.UseStaticFiles();  // Enables serving static files
+app.UseStaticFiles();
+
 app.UseRouting();
-app.UseAuthentication();    
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

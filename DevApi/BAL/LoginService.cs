@@ -17,22 +17,42 @@ namespace MyApp.BAL
                 this.jWTFunction = _jwtfunction;
         }
 
-        public  UserDto Login(string UserName,string Password)
+        public  UserResponseDto Login(string UserName,string Password)
         {
-            UserDto res = new UserDto();
+            UserResponseDto res = new UserResponseDto();
             string _proc = "Proc_Login";
             var queryparameter = new DynamicParameters();
             queryparameter.Add("@ProcId", 1);
-            queryparameter.Add("@UserName", "Admin");
-            queryparameter.Add("@Password", "BQLGE773F69/GxGiWmDnow==");
-            res = DBHelperDapper.GetAllModel<UserDto>(_proc, queryparameter);
-            if (res !=null)
+            queryparameter.Add("@UserName", UserName);
+            queryparameter.Add("@Password",Crypto.Encrypt( Password));
+            res = DBHelperDapper.GetAllModel<UserResponseDto>(_proc, queryparameter);
+            if (res != null && res.UserGuid !=Guid.Empty )
             {
 
                 //var jwtFunction = new JWTFunction(configuration);
                 res.Token = jWTFunction.GenerateJwtToken(res.UserName);
             }
-                
+            else
+            {
+                res = new UserResponseDto();
+                res.Flag= 0;
+                res.Message = "Invalid UserName or Password";
+            }
+
+                return res;
+        }
+
+        public string Encrypt(string data)
+        {
+           
+           
+            string res = Crypto.Encrypt(data);
+            return res;
+        }
+        public string Decrypt(string data)
+        { 
+
+            string res = Crypto.Decrypt(data);
             return res;
         }
     }

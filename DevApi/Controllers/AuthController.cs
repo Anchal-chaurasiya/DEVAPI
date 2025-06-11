@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevApi.Models;
+using DevApi.Models.Common;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using MyApp.BAL;
 using MyApp.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using DevApi.Models;
-using MyApp.BAL;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -22,13 +23,24 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("UserLogin")]
-    public UserDto Login([FromBody] UserReqDto userLogin)
+    public UserResponseDto Login([FromBody] UserReqDto userLogin)
     {
         // Validate user credentials (this should check against a database)
         var e = loginService.Login(userLogin.UserName, userLogin.Password);
 
         return e;
     }
+    [HttpPost("EncryptD")]
+    public string Encrypt([FromBody] CommonRequestDto<string> commonRequestDto)
+    {
+        var e = loginService.Encrypt(commonRequestDto.Data);
+        return e;
+    }
+    [HttpPost("Decrypt")]
+    public string Decrypt(string data)
+    {
+        var e = loginService.Decrypt(data);
+        return e;
+    }
 
-   
 }

@@ -50,10 +50,11 @@ namespace MyApp.BAL
             string proc = "Proc_SaveItemGroup";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 2);
-            queryParameter.Add("@ItemGroupId", itemGroup.ItemGroupId);
+            queryParameter.Add("@ItemGroupGuid", itemGroup.ItemGroupGuid);
             queryParameter.Add("@ItemGroupName", itemGroup.ItemGroupName);
             queryParameter.Add("@Description", itemGroup.Description);
             queryParameter.Add("@createdBy", itemGroup.CreatedBy);
+            queryParameter.Add("@IsAstive", itemGroup.IsActive);
             queryParameter.Add("@Remarks", itemGroup.Remarks);
 
             var result = DBHelperDapper.GetAllModelNew<ItemGroupDto, ValidationMessageDto>(proc, queryParameter);
