@@ -13,6 +13,6 @@ namespace MyApp.Models.Common
         public DateTime ModifiedOn { get; set; }
         public int ModifiedBy { get; set; }
         public bool DelMark { get; set; }
-        public string Remarks { get; set; }
+        public string? Remarks { get; set; } = "";
     }
 }

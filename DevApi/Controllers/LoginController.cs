@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevApi.Models.Common;
+using Microsoft.AspNetCore.Mvc;
 using MyApp.BAL;
 using MyApp.Models;
 
@@ -14,11 +15,24 @@ namespace DevApi.Controllers
         {
             this.loginservice = _loginservice;
         }
-        [HttpGet(Name = "Login")]
-        public UserDto Login(UserDto obj)
-        {
-            var e = loginservice.Login(obj.UserName, obj.Password);
-            return e;
-        }
+        //[HttpGet(Name = "Login")]
+        //public UserResponseDto Login(UserDto obj)
+        //{
+        //    var e = loginservice.Login(obj.UserName, obj.Password);
+        //    return e;
+        //}
+
+        //[HttpPost(Name = "Encrypt")]
+        //public string Encrypt([FromBody] CommonRequestDto<string> commonRequestDto)
+        //{
+        //    var e = loginservice.Encrypt(commonRequestDto.Data);
+        //    return e;
+        //}
+        //[HttpPost(Name = "Encrypt")]
+        //public string Decrypt(string data)
+        //{
+        //    var e = loginservice.Decrypt(data);
+        //    return e;
+        //}
     }
 }

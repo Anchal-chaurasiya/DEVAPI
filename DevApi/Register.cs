@@ -15,6 +15,8 @@ namespace DevApi
             services.AddTransient<MenuService>();
             services.AddTransient<CustomerService>();
             services.AddTransient<ItemService>(); // <-- Add this line
+            services.AddTransient<CountryService>(); // <-- Add this line
+            services.AddTransient<StateService>();
         }
     }
 }

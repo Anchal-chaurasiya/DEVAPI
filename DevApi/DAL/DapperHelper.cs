@@ -14,10 +14,13 @@ namespace MyApp.Models
         {
             try
             {
-                //return connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-                //return connectionString = "Server=localhost;Database=TAXDB;User Id=sa;Password=123456;TrustServerCertificate=true;";
+
+                //return connectionString = "Server=LAPTOP-FFUI3E03\\LOCALHOST;Database=TAXDB;User Id=sa;Password=123456;TrustServerCertificate=true;";
+
                 return connectionString = "Server=68.178.164.44,1437\\DIVIKA;Database=GetRise_Dev;User Id=sa;Password=M@tpuchbha!@213$;TrustServerCertificate=true;";
-                //return connectionString = "Server=DESKTOP-SV7IOP0\\LOCALHOST;Database=TAXDB;User Id=sa;Password=123456;TrustServerCertificate=true;";
+
+
+
 
             }
             catch (Exception)
