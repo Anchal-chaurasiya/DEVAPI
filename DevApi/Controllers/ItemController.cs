@@ -32,7 +32,7 @@ namespace DevApi.Controllers
         }
 
         [HttpPost("GetItemService")]
-        public ActionResult<CommonResponseDto<ItemSaveDto>> GetItemByGuid([FromBody] CommonRequestDto<ItemReqDto> request)
+        public ActionResult<CommonResponseDto<ItemSaveDto>> GetItemByGuid([FromBody] CommonRequestDto<Guid> request)
         {
             var result = itemService.GetItemByGuid(request);
             return Ok(result);

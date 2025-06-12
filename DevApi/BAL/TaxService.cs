@@ -103,7 +103,7 @@ namespace MyApp.BAL
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 5);
 
-            var res = DBHelperDapper.GetAllModel<List<TaxDto>>(proc, queryParameter);
+            var res = DBHelperDapper.GetAllModelList<TaxDto>(proc, queryParameter);
             return res;
         }
     }

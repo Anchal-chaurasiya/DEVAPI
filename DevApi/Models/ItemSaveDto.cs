@@ -14,6 +14,8 @@ namespace MyApp.Models
         public long? TaxId { get; set; }
         public long ItemGroupId { get; set; }
         public string HSNCode { get; set; }
+        public string? ItemGroupName { get; set; }
+        public string? TaxName { get; set; }
     }
 
     public class ItemListDto : BaseDto
