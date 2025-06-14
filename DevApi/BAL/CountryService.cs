@@ -28,6 +28,14 @@ namespace MyApp.BAL
             response.Message = "Success";
             return response;
         }
+        public List<CountryDto> GetCountryDropdown()
+        {
+            string proc = "Proc_SaveCountry";
+            var queryParameter = new DynamicParameters();
+            queryParameter.Add("@ProcId", 3);
 
+            var res = DBHelperDapper.GetAllModelList<CountryDto>(proc, queryParameter);
+            return res;
+        }
     }
 }

@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using MyApp.BAL;
 using DevApi.Models;
 using DevApi.Models.Common;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using MyApp.BAL;
+using MyApp.Models;
 using System;
 using System.Collections.Generic;
 
@@ -28,6 +29,13 @@ namespace DevApi.Controllers
         {
             var response = countryService.GetCountryList(request);
             return Ok(response);
+        }
+
+        [HttpGet("GetCountryDropdownService")]
+        public ActionResult<List<ItemGroupDto>> GetCountryDropdown()
+        {
+            var list = countryService.GetCountryDropdown();
+            return Ok(list);
         }
     }
 }
