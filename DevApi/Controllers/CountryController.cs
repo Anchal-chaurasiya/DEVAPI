@@ -29,7 +29,5 @@ namespace DevApi.Controllers
             var response = countryService.GetCountryList(request);
             return Ok(response);
         }
-
-       
     }
 }

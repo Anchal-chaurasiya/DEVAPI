@@ -33,7 +33,7 @@ namespace DevApi.Controllers
             return Ok(result);
         }
         [HttpPost("GetCustomerService")]
-        public ActionResult<CommonResponseDto<CustomerListDto>> GetCustomerByGuid([FromBody] CommonRequestDto<CustomerReqDto> request)
+        public ActionResult<CommonResponseDto<CustomerListDto>> GetCustomerByGuid([FromBody] CommonRequestDto<Guid> request)
         {
             var result = customerService.GetCustomerByGuid(request);
             return Ok(result);
