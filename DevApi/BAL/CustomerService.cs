@@ -49,7 +49,7 @@ namespace MyApp.BAL
             response.Message = "Success";
             return response;
         }
-        public CommonResponseDto<CustomerSaveDto> GetCustomerByGuid(CommonRequestDto<CustomerReqDto> request)
+        public CommonResponseDto<CustomerSaveDto> GetCustomerByGuid(CommonRequestDto<Guid> request)
         {
             var response = new CommonResponseDto<CustomerSaveDto>();
             string proc = "Proc_SaveCustomerWithAddresses";

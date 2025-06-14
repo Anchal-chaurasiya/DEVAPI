@@ -34,7 +34,7 @@ namespace MyApp.Models
     }
     public class CustomerListDto : BaseDto
     {
-        public Guid CustomerGuid { get; set; }
+        public Guid? CustomerGuid { get; set; }
         public string CustomerCode { get; set; }
         public string CustomerName { get; set; }
         public string Email { get; set; }

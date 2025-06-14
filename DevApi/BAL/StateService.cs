@@ -30,6 +30,19 @@ namespace MyApp.BAL
             return response;
         }
 
-        
+
+        public List<StateDto> GetStateDropdown(CommonRequestDto<int> request)
+        {
+            string proc = "Proc_SaveState";
+            var queryParameter = new DynamicParameters();
+            queryParameter.Add("@ProcId", 3);
+            queryParameter.Add("@CountryId", request.Data);
+
+            var res = DBHelperDapper.GetAllModelList<StateDto>(proc, queryParameter);
+            return res;
+
+
+        }
+       
     }
 }

@@ -50,5 +50,12 @@ namespace DevApi.Controllers
             var response = taxService.GetTaxByGuid(request);
             return Ok(response);
         }
+
+        [HttpGet("GetTaxDropdownService")]
+        public ActionResult<List<TaxDto>> GetItemGroupDropdown()
+        {
+            var list = taxService.GetTaxDropdown();
+            return Ok(list);
+        }
     }
 }

@@ -107,7 +107,7 @@ namespace MyApp.BAL
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 5);
 
-            var res = DBHelperDapper.GetAllModel<List<ItemGroupDto>>(proc, queryParameter);
+            var res = DBHelperDapper.GetAllModelList<ItemGroupDto>(proc, queryParameter);
             return res;
         }
     }

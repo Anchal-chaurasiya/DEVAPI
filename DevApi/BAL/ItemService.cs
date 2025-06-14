@@ -46,15 +46,15 @@ namespace MyApp.BAL
             return response;
         }
 
-        public CommonResponseDto<ItemSaveDto> GetItemByGuid(CommonRequestDto<ItemReqDto> request)
+        public CommonResponseDto<ItemSaveDto> GetItemByGuid(CommonRequestDto<Guid> request)
         {
             var response = new CommonResponseDto<ItemSaveDto>();
             string proc = "Proc_SaveUMItem";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 4);
-            queryParameter.Add("@ItemGuid", request.Data.ItemGuid);
+            queryParameter.Add("@ItemGuid", request.Data);
 
-            var result = DBHelperDapper.GetModelFromJson<ItemSaveDto>(proc, queryParameter);
+            var result = DBHelperDapper.GetAllModel<ItemSaveDto>(proc, queryParameter);
             response.Data = result;
             response.Flag = result != null ? 1 : 0;
             response.Message = result != null ? "Success" : "Item not found";
