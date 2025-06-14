@@ -30,6 +30,9 @@ namespace MyApp.Models
         public string ZipCode { get; set; }
         public int CompanyId { get; set; }
         public int CountryId { get; set; }
+        public string? StateName { get; set; }
+        public string? CountryName { get; set; }
+
 
     }
     public class CustomerListDto : BaseDto
