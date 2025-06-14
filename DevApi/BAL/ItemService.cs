@@ -23,6 +23,7 @@ namespace MyApp.BAL
             queryParameter.Add("@HSNCode", item.HSNCode);
             queryParameter.Add("@CreatedBy", item.CreatedBy);
             queryParameter.Add("@Remarks", item.Remarks);
+            queryParameter.Add("@IsActive", item.IsActive);
 
             var result = DBHelperDapper.GetAllModelNew<ItemSaveDto, ValidationMessageDto>(proc, queryParameter);
             response.Data = result;

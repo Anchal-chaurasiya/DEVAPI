@@ -53,6 +53,7 @@ namespace MyApp.BAL
             queryParameter.Add("@TaxPercentage", tax.TaxPercentage);
             queryParameter.Add("@createdBy", tax.CreatedBy);
             queryParameter.Add("@Remarks", tax.Remarks);
+            queryParameter.Add("@IsActive", tax.IsActive);
 
             var dbResult = DBHelperDapper.GetAllModelNew<TaxDto, CommonResponseDto<TaxDto>>(proc, queryParameter);
             response.Data = dbResult.Data;

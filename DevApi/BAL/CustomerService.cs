@@ -56,7 +56,7 @@ namespace MyApp.BAL
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 3); // 3 for get one
             queryParameter.Add("@CustomerGuid", request.Data.CustomerGuid);
-            queryParameter.Add("@CompanyId", request.Data.CompanyId);
+            queryParameter.Add("@CompanyId", request.CompanyId);
 
             var result = DBHelperDapper.GetModelFromJson<CustomerSaveDto>(proc, queryParameter);
            response.Data = result;

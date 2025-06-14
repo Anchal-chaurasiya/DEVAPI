@@ -1,5 +1,6 @@
 using DevApi;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -37,12 +38,34 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
     {
-        policy.WithOrigins("http://localhost:4200", "http://localhost:82", "https://68.178.164.44:82", "http://68.178.164.44:82")
+        policy.WithOrigins("http://localhost:4200", "http://localhost:83", "http://localhost:82", "https://68.178.164.44:82", "http://68.178.164.44:82")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials();
     });
 });
+
+
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState
+                .Where(m => m.Value.Errors.Count > 0)
+                .Select(m => new {
+                    Field = m.Key,
+                    Error = m.Value.Errors.First().ErrorMessage
+                });
+
+            return new BadRequestObjectResult(new
+            {
+                Message = "Invalid request",
+                Errors = errors
+            });
+        };
+    });
+
 
 var app = builder.Build();
 
@@ -67,7 +90,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseDeveloperExceptionPage();
 app.MapControllers();
+
 
 app.Run();
