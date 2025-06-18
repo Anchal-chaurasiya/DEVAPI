@@ -17,6 +17,7 @@ namespace DevApi
             services.AddTransient<ItemService>(); // <-- Add this line
             services.AddTransient<CountryService>(); // <-- Add this line
             services.AddTransient<StateService>();
+            services.AddTransient<UomService>();
         }
     }
 }

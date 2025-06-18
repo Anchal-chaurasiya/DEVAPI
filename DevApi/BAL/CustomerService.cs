@@ -25,6 +25,7 @@ namespace MyApp.BAL
             queryParameter.Add("@Remarks", customer.Remarks);
             queryParameter.Add("@CompanyId", customer.CompanyId);
             queryParameter.Add("@CustomerType", customer.CustomerType);
+            queryParameter.Add("@IsActive", customer.IsActive);
             queryParameter.Add("@AddressList",JsonConvert.SerializeObject( customer.Addresses));
 
             var result = DBHelperDapper.GetAllModelNew<CustomerSaveDto, ValidationMessageDto>(proc, queryParameter);
