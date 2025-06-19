@@ -16,6 +16,8 @@ namespace MyApp.Models
         public string HSNCode { get; set; }
         public string? ItemGroupName { get; set; }
         public string? TaxName { get; set; }
+        public int? UomId { get; set; }
+        public string? UomName { get; set; }
     }
 
     public class ItemListDto : BaseDto

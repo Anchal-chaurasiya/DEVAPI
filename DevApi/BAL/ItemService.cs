@@ -24,6 +24,7 @@ namespace MyApp.BAL
             queryParameter.Add("@CreatedBy", item.CreatedBy);
             queryParameter.Add("@Remarks", item.Remarks);
             queryParameter.Add("@IsActive", item.IsActive);
+            queryParameter.Add("@UomId", item.UomId);
 
             var result = DBHelperDapper.GetAllModelNew<ItemSaveDto, ValidationMessageDto>(proc, queryParameter);
             response.Data = result;
