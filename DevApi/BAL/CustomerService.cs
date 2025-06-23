@@ -23,7 +23,7 @@ namespace MyApp.BAL
             queryParameter.Add("@GSTN", customer.GSTN);
             queryParameter.Add("@createdBy", customer.CreatedBy);
             queryParameter.Add("@Remarks", customer.Remarks);
-            queryParameter.Add("@CompanyId", customer.CompanyId);
+            queryParameter.Add("@CompanyId", request.CompanyId);
             queryParameter.Add("@CustomerType", customer.CustomerType);
             queryParameter.Add("@IsActive", customer.IsActive);
             queryParameter.Add("@AddressList",JsonConvert.SerializeObject( customer.Addresses));

@@ -1,9 +1,10 @@
+using Azure;
+using Dapper;
 using DevApi.Models;
 using DevApi.Models.Common;
-using Dapper;
+using MyApp.Models;
 using System;
 using System.Collections.Generic;
-using MyApp.Models;
 
 namespace MyApp.BAL
 {
@@ -31,14 +32,23 @@ namespace MyApp.BAL
         }
 
 
-        public List<StateDto> GetStateDropdown(CommonRequestDto<int> request)
+        public CommonResponseDto<List<StateDto>> GetStateDropdown(CommonRequestDto<int> request)
         {
+            var res = new CommonResponseDto<List<StateDto>>
+            {
+                CompanyId = request.CompanyId,
+                PageSize = request.PageSize,
+                PageRecordCount = request.PageRecordCount
+            };
             string proc = "Proc_SaveState";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 3);
             queryParameter.Add("@CountryId", request.Data);
 
-            var res = DBHelperDapper.GetAllModelList<StateDto>(proc, queryParameter);
+            var list = DBHelperDapper.GetAllModelList<StateDto>(proc, queryParameter);
+            res.Data = list;
+            res.Flag = 1;
+            res.Message = "Success";
             return res;
 
 

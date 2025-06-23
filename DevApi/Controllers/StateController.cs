@@ -32,7 +32,7 @@ namespace DevApi.Controllers
 
 
         [HttpPost("GetStateDropDownService")]
-        public ActionResult<List<StateDto>> GetStateDropdownList([FromBody] CommonRequestDto<int> request)
+        public ActionResult<CommonResponseDto<List<StateDto>>> GetStateDropdownList([FromBody] CommonRequestDto<int> request)
         {
             var response = stateService.GetStateDropdown(request);
             return Ok(response);
