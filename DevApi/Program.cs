@@ -1,4 +1,5 @@
 using DevApi;
+using DevApi.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -91,7 +92,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseDeveloperExceptionPage();
+app.UseMiddleware<SessionValidationMiddleware>();
 app.MapControllers();
+
 
 
 app.Run();

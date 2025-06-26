@@ -1,4 +1,5 @@
-﻿using DevApi.Models.Common;
+﻿using DevApi.BAL;
+using DevApi.Models.Common;
 using Microsoft.Extensions.DependencyInjection;
 using MyApp.BAL;
 
@@ -18,6 +19,7 @@ namespace DevApi
             services.AddTransient<CountryService>(); // <-- Add this line
             services.AddTransient<StateService>();
             services.AddTransient<UomService>();
+            services.AddTransient<CompanyService>();
         }
     }
 }

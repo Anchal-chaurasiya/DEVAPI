@@ -13,16 +13,18 @@ namespace DevApi.Models.Common
         {
                 this.configuration = _configuration;
         }
-        public   string GenerateJwtToken(string username)
+        public   string GenerateJwtToken(long UserId)
         {
             // string value = System.Configuration.ConfigurationManager.AppSettings["Jwt:key"];
             var keee = configuration["Jwt:Key"];
             var key = Encoding.UTF8.GetBytes(configuration["Jwt:Key"]);
+            var sessionToken = Guid.NewGuid(); // <--- This will be saved in DB
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, username),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(ClaimTypes.Name, username)
+            new Claim("UserId", UserId.ToString()),
+            new Claim(JwtRegisteredClaimNames.Jti, sessionToken.ToString()),
+            new Claim(ClaimTypes.Name, UserId.ToString())
+            
         };
 
             var token = new JwtSecurityToken(
