@@ -42,6 +42,8 @@ namespace MyApp.Models
         public int CompanyCount { get; set; }
         public bool IsSingleUser { get; set; } 
         public Guid SessionToken{ get; set; } 
+        public Guid MCompanyGuid { get; set; } 
         public DateTime LastLogin{ get; set; } 
+        public string SubscriptionDays { get; set; } 
     }
 }

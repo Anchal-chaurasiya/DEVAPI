@@ -22,7 +22,8 @@ namespace MyApp.BAL
             string proc = "Proc_SaveUom";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 3); // Convention: 3 = get list
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var list = DBHelperDapper.GetAllModelList<UomDto>(proc, queryParameter);
             response.Data = list;
             response.Flag = 1;
@@ -38,7 +39,8 @@ namespace MyApp.BAL
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 4); // Convention: 4 = get by guid
             queryParameter.Add("@UomGuid", request.Data);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var uom = DBHelperDapper.GetAllModel<UomDto>(proc, queryParameter);
             response.Data = uom;
             response.Flag = uom != null ? 1 : 0;
@@ -53,7 +55,8 @@ namespace MyApp.BAL
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 5); // Use a new ProcId for dropdown
             queryParameter.Add("@CompanyId", request.CompanyId);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var result = DBHelperDapper.GetAllModelList<UomResponseDTO>(proc, queryParameter);
             var response = new CommonResponseDto<List<UomResponseDTO>>
             {

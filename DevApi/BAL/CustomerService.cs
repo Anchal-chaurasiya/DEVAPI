@@ -23,9 +23,10 @@ namespace MyApp.BAL
             queryParameter.Add("@GSTN", customer.GSTN);
             queryParameter.Add("@createdBy", customer.CreatedBy);
             queryParameter.Add("@Remarks", customer.Remarks);
-            queryParameter.Add("@CompanyId", request.CompanyId);
             queryParameter.Add("@CustomerType", customer.CustomerType);
             queryParameter.Add("@IsActive", customer.IsActive);
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             queryParameter.Add("@AddressList",JsonConvert.SerializeObject( customer.Addresses));
 
             var result = DBHelperDapper.GetAllModelNew<CustomerSaveDto, ValidationMessageDto>(proc, queryParameter);
@@ -43,7 +44,8 @@ namespace MyApp.BAL
             queryParameter.Add("@ProcId", 2); // 2 for list
             queryParameter.Add("@CompanyId", request.CompanyId);
             queryParameter.Add("@CustomerType", request.Data); // Pass CustomerType as filter
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var result = DBHelperDapper.GetAllModelList<CustomerListDto>(proc, queryParameter);
             response.Data = result;
             response.Flag = 1;
@@ -58,7 +60,8 @@ namespace MyApp.BAL
             queryParameter.Add("@ProcId", 3); // 3 for get one
             queryParameter.Add("@CustomerGuid", request.Data);
             queryParameter.Add("@CompanyId", request.CompanyId);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var result = DBHelperDapper.GetModelFromJson<CustomerSaveDto>(proc, queryParameter);
            response.Data = result;
             response.Flag = result != null ? 1 : 0;

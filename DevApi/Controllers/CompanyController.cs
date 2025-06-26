@@ -52,9 +52,9 @@ namespace DevApi.Controllers
         }
 
         [HttpGet("GetCompanyDropdownService")]
-        public ActionResult<List<CompanyDto>> GetCompanyDropdown()
+        public ActionResult<List<CompanyDto>> GetCompanyDropdown(CommonRequestDto<int> request)
         {
-            var list = companyService.GetCompanyDropdown();
+            var list = companyService.GetCompanyDropdown(request);
             return Ok(list);
         }
     }

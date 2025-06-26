@@ -25,6 +25,8 @@ namespace MyApp.BAL
             queryParameter.Add("@Remarks", item.Remarks);
             queryParameter.Add("@IsActive", item.IsActive);
             queryParameter.Add("@UomId", item.UomId);
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
 
             var result = DBHelperDapper.GetAllModelNew<ItemSaveDto, ValidationMessageDto>(proc, queryParameter);
             response.Data = result;
@@ -39,7 +41,8 @@ namespace MyApp.BAL
             string proc = "Proc_SaveUMItem";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 3);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var result = DBHelperDapper.GetAllModelList<ItemListDto>(proc, queryParameter);
             response.Data = result;
             response.Flag = 1;
@@ -54,7 +57,8 @@ namespace MyApp.BAL
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 4);
             queryParameter.Add("@ItemGuid", request.Data);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var result = DBHelperDapper.GetAllModel<ItemSaveDto>(proc, queryParameter);
             response.Data = result;
             response.Flag = result != null ? 1 : 0;

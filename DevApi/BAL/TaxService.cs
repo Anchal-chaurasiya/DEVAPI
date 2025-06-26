@@ -26,7 +26,8 @@ namespace MyApp.BAL
             queryParameter.Add("@TaxPercentage", tax.TaxPercentage);
             queryParameter.Add("@createdBy", tax.CreatedBy);
             queryParameter.Add("@Remarks", tax.Remarks);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var result = DBHelperDapper.GetAllModelNew<TaxDto, ValidationMessageDto>(proc, queryParameter);
             response.Data = result;
             response.Flag = result.Flag == 1 ? (int)ResponseEnum.Success : (int)ResponseEnum.Error;
@@ -54,7 +55,8 @@ namespace MyApp.BAL
             queryParameter.Add("@createdBy", tax.CreatedBy);
             queryParameter.Add("@Remarks", tax.Remarks);
             queryParameter.Add("@IsActive", tax.IsActive);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var dbResult = DBHelperDapper.GetAllModelNew<TaxDto, CommonResponseDto<TaxDto>>(proc, queryParameter);
             response.Data = dbResult.Data;
             response.Flag = dbResult.Flag;
@@ -74,7 +76,8 @@ namespace MyApp.BAL
             string proc = "Proc_SaveTax";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 3);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var list = DBHelperDapper.GetAllModelList<TaxDto>(proc, queryParameter);
             response.Data = list;
             response.Flag = 1;
@@ -90,7 +93,8 @@ namespace MyApp.BAL
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 4);
             queryParameter.Add("@TaxGuid",request.Data);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var tax = DBHelperDapper.GetAllModel<TaxDto>(proc, queryParameter);
             response.Data = tax;
             response.Flag = tax != null ? 1 : 0;

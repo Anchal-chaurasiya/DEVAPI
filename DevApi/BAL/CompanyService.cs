@@ -1,9 +1,10 @@
+using Azure.Core;
+using Dapper;
 using DevApi.Models;
 using DevApi.Models.Common;
-using Dapper;
+using MyApp.Models;
 using System;
 using System.Collections.Generic;
-using MyApp.Models;
 
 namespace DevApi.BAL
 {
@@ -51,6 +52,8 @@ namespace DevApi.BAL
             queryParameter.Add("@UPIId", company.UPIId);
             queryParameter.Add("@CreatedBy", company.CreatedBy);
             queryParameter.Add("@Remarks", company.Remarks);
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+         
 
             var result = DBHelperDapper.GetAllModelNew<CompanyDto, ValidationMessageDto>(proc, queryParameter);
             response.Data = result;
@@ -104,7 +107,8 @@ namespace DevApi.BAL
             queryParameter.Add("@IsActive", company.IsActive);
             queryParameter.Add("@ModifiedBy", company.ModifiedBy);
             queryParameter.Add("@Remarks", company.Remarks);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+           
             var result = DBHelperDapper.GetAllModelNew<CompanyDto, ValidationMessageDto>(proc, queryParameter);
             response.Data = result;
             response.Flag = result.Flag == 1 ? 1 : 0;
@@ -125,7 +129,7 @@ namespace DevApi.BAL
             string proc = "Proc_SaveCompany";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 3);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
             var list = DBHelperDapper.GetAllModelList<CompanyDto>(proc, queryParameter);
             response.Data = list;
             response.Flag = 1;
@@ -141,6 +145,8 @@ namespace DevApi.BAL
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 4);
             queryParameter.Add("@CompanyGuid", request.Data);
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+
 
             var company = DBHelperDapper.GetAllModel<CompanyDto>(proc, queryParameter);
             response.Data = company;
@@ -149,12 +155,12 @@ namespace DevApi.BAL
             return response;
         }
 
-        public List<CompanyDto> GetCompanyDropdown()
+        public List<CompanyDto> GetCompanyDropdown(CommonRequestDto<int> request)
         {
             string proc = "Proc_SaveCompany";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 5);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
             var res = DBHelperDapper.GetAllModelList<CompanyDto>(proc, queryParameter);
             return res;
         }
