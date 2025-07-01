@@ -51,7 +51,7 @@ namespace DevApi.Controllers
         }
 
         [HttpPost("GetItemGroupService")]
-        public ActionResult<CommonResponseDto<ItemGroupDto>> GetItemGroupByGuid(CommonRequestDto<Guid> commonRequest)
+        public ActionResult<CommonResponseDto<ItemGroupDto>> GetItemGroupByGuid([FromBody]  CommonRequestDto<Guid> commonRequest)
         {
             var item = itemGroupService.GetItemGroupByGuid(commonRequest);
             if (item != null)
@@ -61,9 +61,9 @@ namespace DevApi.Controllers
         }
 
         [HttpGet("GetItemGroupDropdownService")]
-        public ActionResult<List<ItemGroupDto>> GetItemGroupDropdown()
+        public ActionResult<List<ItemGroupDto>> GetItemGroupDropdown([FromBody] CommonRequestDto<int> commonRequest)
         {
-            var list = itemGroupService.GetItemGroupDropdown();
+            var list = itemGroupService.GetItemGroupDropdown(commonRequest);
             return Ok(list);
         }
     }

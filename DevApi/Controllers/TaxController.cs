@@ -52,9 +52,9 @@ namespace DevApi.Controllers
         }
 
         [HttpGet("GetTaxDropdownService")]
-        public ActionResult<List<TaxDto>> GetItemGroupDropdown()
+        public ActionResult<List<TaxDto>> GetItemGroupDropdown([FromBody] CommonRequestDto<int> request)
         {
-            var list = taxService.GetTaxDropdown();
+            var list = taxService.GetTaxDropdown(request);
             return Ok(list);
         }
     }

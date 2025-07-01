@@ -102,12 +102,13 @@ namespace MyApp.BAL
             return response;
         }
 
-        public List<TaxDto> GetTaxDropdown()
+        public List<TaxDto> GetTaxDropdown(CommonRequestDto<int> request)
         {
             string proc = "Proc_SaveTax";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 5);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var res = DBHelperDapper.GetAllModelList<TaxDto>(proc, queryParameter);
             return res;
         }

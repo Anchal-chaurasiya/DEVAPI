@@ -77,7 +77,8 @@ namespace MyApp.BAL
             string proc = "Proc_SaveItemGroup";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 3);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var list = DBHelperDapper.GetAllModelList<ItemGroupDto>(proc, queryParameter);
             response.Data = list;
             response.Flag = 1;
@@ -93,7 +94,8 @@ namespace MyApp.BAL
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 4);
             queryParameter.Add("@ItemGroupGuid", commonRequest.Data);
-
+            queryParameter.Add("@MCompanyGuid", commonRequest.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", commonRequest.CompanyGuid);
             var itemGroup = DBHelperDapper.GetAllModel<ItemGroupDto>(proc, queryParameter);
             response.Data = itemGroup;
             response.Flag = itemGroup != null ? 1 : 0;
@@ -101,12 +103,13 @@ namespace MyApp.BAL
             return response;
         }
 
-        public List<ItemGroupDto> GetItemGroupDropdown()
+        public List<ItemGroupDto> GetItemGroupDropdown(CommonRequestDto<int> commonRequest)
         {
             string proc = "Proc_SaveItemGroup";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 5);
-
+            queryParameter.Add("@MCompanyGuid", commonRequest.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", commonRequest.CompanyGuid);
             var res = DBHelperDapper.GetAllModelList<ItemGroupDto>(proc, queryParameter);
             return res;
         }
