@@ -103,15 +103,24 @@ namespace MyApp.BAL
             return response;
         }
 
-        public List<ItemGroupDto> GetItemGroupDropdown(CommonRequestDto<int> commonRequest)
+        public CommonResponseDto<List<ItemGroupDto>> GetItemGroupDropdown(CommonRequestDto<int> commonRequest)
         {
+            var response = new CommonResponseDto<List<ItemGroupDto>>
+            {
+                CompanyId = commonRequest.CompanyId,
+                PageSize = commonRequest.PageSize,
+                PageRecordCount = commonRequest.PageRecordCount
+            };
             string proc = "Proc_SaveItemGroup";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 5);
             queryParameter.Add("@MCompanyGuid", commonRequest.MCompanyGuid);
             queryParameter.Add("@CompanyGuid", commonRequest.CompanyGuid);
-            var res = DBHelperDapper.GetAllModelList<ItemGroupDto>(proc, queryParameter);
-            return res;
+            var list = DBHelperDapper.GetAllModelList<ItemGroupDto>(proc, queryParameter);
+            response.Data = list;
+            response.Flag = 1;
+            response.Message = "Success";
+            return response;
         }
     }
 }

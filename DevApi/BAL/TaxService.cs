@@ -102,15 +102,25 @@ namespace MyApp.BAL
             return response;
         }
 
-        public List<TaxDto> GetTaxDropdown(CommonRequestDto<int> request)
+        public CommonResponseDto<List<TaxDto>> GetTaxDropdown(CommonRequestDto<int> request)
         {
+            var response = new CommonResponseDto<List<TaxDto>>
+            {
+                CompanyId = request.CompanyId,
+                PageSize = request.PageSize,
+                PageRecordCount = request.PageRecordCount
+            };
+
             string proc = "Proc_SaveTax";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 5);
             queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
             queryParameter.Add("@CompanyGuid", request.CompanyGuid);
-            var res = DBHelperDapper.GetAllModelList<TaxDto>(proc, queryParameter);
-            return res;
+            var list = DBHelperDapper.GetAllModelList<TaxDto>(proc, queryParameter);
+            response.Data = list;
+            response.Flag = 1;
+            response.Message = "Success";
+            return response;
         }
     }
 }

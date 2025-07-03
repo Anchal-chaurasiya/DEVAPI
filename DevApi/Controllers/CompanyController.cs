@@ -51,7 +51,7 @@ namespace DevApi.Controllers
             return Ok(response);
         }
 
-        [HttpGet("GetCompanyDropdownService")]
+        [HttpPost("GetCompanyDropdownService")]
         public ActionResult<List<CompanyDto>> GetCompanyDropdown(CommonRequestDto<int> request)
         {
             var list = companyService.GetCompanyDropdown(request);

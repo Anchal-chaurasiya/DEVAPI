@@ -60,8 +60,8 @@ namespace DevApi.Controllers
                 return NotFound();
         }
 
-        [HttpGet("GetItemGroupDropdownService")]
-        public ActionResult<List<ItemGroupDto>> GetItemGroupDropdown([FromBody] CommonRequestDto<int> commonRequest)
+        [HttpPost("GetItemGroupDropdownService")]
+        public ActionResult<CommonResponseDto<List<ItemGroupDto>>> GetItemGroupDropdown([FromBody] CommonRequestDto<int> commonRequest)
         {
             var list = itemGroupService.GetItemGroupDropdown(commonRequest);
             return Ok(list);

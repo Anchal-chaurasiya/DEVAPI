@@ -54,7 +54,6 @@ namespace MyApp.BAL
             string proc = "Proc_SaveUom";
             var queryParameter = new DynamicParameters();
             queryParameter.Add("@ProcId", 5); // Use a new ProcId for dropdown
-            queryParameter.Add("@CompanyId", request.CompanyId);
             queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
             queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var result = DBHelperDapper.GetAllModelList<UomResponseDTO>(proc, queryParameter);
