@@ -27,7 +27,8 @@ namespace MyApp.BAL
             queryParameter.Add("@Description", itemGroup.Description);
             queryParameter.Add("@createdBy", itemGroup.CreatedBy);
             queryParameter.Add("@Remarks", itemGroup.Remarks);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var result = DBHelperDapper.GetAllModelNew<ItemGroupDto, ValidationMessageDto>(proc, queryParameter);
 
             response.Data = result;
@@ -56,7 +57,8 @@ namespace MyApp.BAL
             queryParameter.Add("@createdBy", itemGroup.CreatedBy);
             queryParameter.Add("@IsAstive", itemGroup.IsActive);
             queryParameter.Add("@Remarks", itemGroup.Remarks);
-
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             var result = DBHelperDapper.GetAllModelNew<ItemGroupDto, ValidationMessageDto>(proc, queryParameter);
 
             response.Data = result;
