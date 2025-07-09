@@ -20,6 +20,7 @@ namespace DevApi
             services.AddTransient<StateService>();
             services.AddTransient<UomService>();
             services.AddTransient<CompanyService>();
+            services.AddTransient<SPTermService>();
         }
     }
 }

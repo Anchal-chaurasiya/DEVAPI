@@ -16,6 +16,9 @@ namespace MyApp.Models
         public string GSTN { get; set; }
         public int CompanyId { get; set; }
         public int CustomerType { get; set; }
+        public int ShippingTermType { get; set; }
+        public int PaymentTermType { get; set; }
+        public string GSTType{ get; set; }
         public List<CustomerAddressDto> Addresses { get; set; }
     }
 
