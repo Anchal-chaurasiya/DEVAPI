@@ -69,5 +69,36 @@ namespace MyApp.BAL
             response.Message = result != null ? "Success" : "Customer not found";
             return response;
         }
+
+        public CommonResponseDto<List<CustomerList>> GetCustomerListForDropdown(CommonRequestDto<CustomerReqDto> request)
+        {
+            var response = new CommonResponseDto<List<CustomerList>>();
+            string proc = "Proc_SaveCustomerWithAddresses";
+            var queryParameter = new DynamicParameters();
+            queryParameter.Add("@ProcId", 4); // 2 for list
+            queryParameter.Add("@CustomerType", request.Data.CustomerType); // Pass CustomerType as filter
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
+            var result = DBHelperDapper.GetAllModelList<CustomerList>(proc, queryParameter);
+            response.Data = result;
+            response.Flag = 1;
+            response.Message = "Success";
+            return response;
+        }
+        public CommonResponseDto<List<CustomerListAddrrss>> GetCustomerAddress(CommonRequestDto<CustomerReqDto> request)
+        {
+            var response = new CommonResponseDto<List<CustomerListAddrrss>>();
+            string proc = "Proc_SaveCustomerWithAddresses";
+            var queryParameter = new DynamicParameters();
+            queryParameter.Add("@ProcId", 5); // 2 for list
+            queryParameter.Add("@CustomerVendorGuid", request.Data.CustomerGuid); // Pass CustomerType as filter
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
+            var result = DBHelperDapper.GetAllModelList<CustomerListAddrrss>(proc, queryParameter);
+            response.Data = result;
+            response.Flag = 1;
+            response.Message = "Success";
+            return response;
+        }
     }
 } 

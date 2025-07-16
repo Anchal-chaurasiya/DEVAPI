@@ -38,5 +38,18 @@ namespace DevApi.Controllers
             var result = customerService.GetCustomerByGuid(request);
             return Ok(result);
         }
+
+        [HttpPost("GetCustomerListForDropDownService")]
+        public ActionResult<CommonResponseDto<CustomerList>> GetCustomerForDropdown([FromBody] CommonRequestDto<CustomerReqDto> request)
+        {
+            var result = customerService.GetCustomerListForDropdown(request);
+            return Ok(result);
+        }
+        [HttpPost("GetCustomerAddressService")]
+        public ActionResult<CommonResponseDto<CustomerListAddrrss>> GetCustomerAddress([FromBody] CommonRequestDto<CustomerReqDto> request)
+        {
+            var result = customerService.GetCustomerAddress(request);
+            return Ok(result);
+        }
     }
 }

@@ -37,5 +37,12 @@ namespace DevApi.Controllers
             var result = itemService.GetItemByGuid(request);
             return Ok(result);
         }
+
+        [HttpPost("GetItemListForDropdownService")]
+        public ActionResult<CommonResponseDto<List<ItemList>>> GetItemListFOrDropdown([FromBody] CommonRequestDto<int> request)
+        {
+            var result = itemService.GetItemListDropdown(request);
+            return Ok(result);
+        }
     }
 }

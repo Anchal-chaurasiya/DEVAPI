@@ -65,5 +65,19 @@ namespace MyApp.BAL
             response.Message = result != null ? "Success" : "Item not found";
             return response;
         }
+        public CommonResponseDto<List<ItemList>> GetItemListDropdown(CommonRequestDto<int> request)
+        {
+            var response = new CommonResponseDto<List<ItemList>>();
+            string proc = "Proc_SaveUMItem";
+            var queryParameter = new DynamicParameters();
+            queryParameter.Add("@ProcId", 6);
+            queryParameter.Add("@MCompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
+            var result = DBHelperDapper.GetAllModelList<ItemList>(proc, queryParameter);
+            response.Data = result;
+            response.Flag = result != null ? 1 : 0;
+            response.Message = result != null ? "Success" : "Item not found";
+            return response;
+        }
     }
 }
