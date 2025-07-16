@@ -83,7 +83,7 @@ namespace MyApp.Models
         public int AddressType { get; set; } 
         public string Address { get; set; }
         public string City { get; set; }
-        public string State { get; set; }
+        public string StateName { get; set; }
         public int StateId{ get; set; }
          public string AddressTypeName
         {
