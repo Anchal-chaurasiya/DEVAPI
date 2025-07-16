@@ -36,4 +36,17 @@ namespace MyApp.Models
     {
         public Guid ItemGuid { get; set; }
     }
+    public class ItemList
+    {
+        public int ItemId { get; set; }
+        public Guid ItemGuid { get; set; }
+        public string ItemCode { get; set; }
+        public string ItemName { get; set; }
+        public string HSNCode { get; set; }
+        public int TaxId { get; set; }
+        public string TaxName { get; set; }
+
+        public decimal TaxPercentage { get; set; }
+    }
+
 }

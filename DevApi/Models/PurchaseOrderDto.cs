@@ -21,6 +21,7 @@ namespace DevApi.Models
         public string ContachPersonNo { get; set; }
         public string? ContachPersonEmail { get; set; }
         public decimal TotalAmount { get; set; }
+        public bool IsCancel{ get; set; }
         public List<PurchaseOrderDetailReqDto>purchaseOrderDetailReqDtos { get; set; } = new List<PurchaseOrderDetailReqDto>();
         public List<PurchaseOrderPaymentReqDto> purchaseOrderPaymentReqDtos { get; set; } = new List<PurchaseOrderPaymentReqDto>();
 

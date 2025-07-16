@@ -62,6 +62,37 @@ namespace MyApp.Models
 
     public class CustomerReqDto
     {
+        public Guid? CustomerGuid { get; set; }
+        public int? CustomerType { get; set; } // 1 for Customer, 2 for Vendor
+    }
+
+    public class CustomerList
+    {
+        public int CustomerId { get; set; }
         public Guid CustomerGuid { get; set; }
+        public string CustomerName { get; set; }
+        public int ShippingTermId{ get; set; }
+        public string ShippingTerm{ get; set; }
+
+        public int PaymentTermId { get; set; }
+        public string PaymentTerm { get; set; }
+    }
+    public class CustomerListAddrrss 
+    {
+        public int AddressId { get; set; }
+        public int AddressType { get; set; } 
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public int StateId{ get; set; }
+         public string AddressTypeName
+        {
+            get
+            {
+                return Enum.IsDefined(typeof(BillingTypeEnum), AddressType)
+                    ? ((BillingTypeEnum)AddressType).ToString()
+                    : string.Empty;
+            }
+        }
     }
 }
