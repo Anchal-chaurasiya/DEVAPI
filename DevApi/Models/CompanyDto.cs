@@ -33,6 +33,7 @@ namespace DevApi.Models
         public string? AccountType { get; set; }
         public string? SwiftCode { get; set; }
         public string? UPIId { get; set; }
+        public string? StateName { get; set; }
        
     }
 }
