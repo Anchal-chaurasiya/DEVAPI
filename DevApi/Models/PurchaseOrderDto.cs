@@ -22,6 +22,7 @@ namespace DevApi.Models
         public string? ContachPersonEmail { get; set; }
         public decimal TotalAmount { get; set; }
         public bool IsCancel{ get; set; }
+        public long AddressId{ get; set; }
         public List<PurchaseOrderDetailReqDto>purchaseOrderDetailReqDtos { get; set; } = new List<PurchaseOrderDetailReqDto>();
         public List<PurchaseOrderPaymentReqDto> purchaseOrderPaymentReqDtos { get; set; } = new List<PurchaseOrderPaymentReqDto>();
 
@@ -34,6 +35,7 @@ namespace DevApi.Models
         public int Sno { get; set; }
         public long ItemId { get; set; }
         public decimal Price { get; set; }
+        public decimal Qty { get; set; }
         public decimal? DiscountPercentage { get; set; }
         public decimal? DiscountAmount { get; set; }
         public decimal? CGSTRate { get; set; }
