@@ -100,5 +100,29 @@ namespace DevApi.BAL
             response.Message = "Success";
             return response;
         }
+
+        public CommonResponseDto<ValidationMessageDto> UpdatePaymentPurchaseOrder(CommonRequestDto<UpdatePurchaseOrderPaymentDto> request)
+        {
+            var response = new CommonResponseDto<ValidationMessageDto>();
+            string proc = "Proc_SavePurchaseOrder";
+            var queryParameter = new DynamicParameters();
+
+            // Main purchase order fields
+            queryParameter.Add("@ProcId", 6);
+
+            queryParameter.Add("@PurchaseGuid", request.Data.PurchaseGuid);
+           
+
+            // Serialize details and payments as JSON (if your proc expects JSON)
+          
+            queryParameter.Add("@PurchaseOrderPaymentsJson",
+                Newtonsoft.Json.JsonConvert.SerializeObject(request.Data.purchaseOrderPaymentReqDtos));
+
+            var result = DBHelperDapper.GetAllModelNew<UpdatePurchaseOrderPaymentDto, ValidationMessageDto>(proc, queryParameter);
+            response.Data = result;
+            response.Flag = result.Flag == 1 ? 1 : 0;
+            response.Message = result.Message;
+            return response;
+        }
     }
 }

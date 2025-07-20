@@ -43,7 +43,14 @@ namespace DevApi.Controllers
             return Ok(response);
         }
 
-      
+        [HttpPost("UpdatePaymentPurchaseOrderService")]
+        public ActionResult<CommonResponseDto<ValidationMessageDto>> UpdatePaymentPurchaseOrder([FromBody] CommonRequestDto<UpdatePurchaseOrderPaymentDto> request)
+        {
+            var response = _purchaseOrderService.UpdatePaymentPurchaseOrder(request);
+            return Ok(response);
+        }
+
+
 
     }
 }
