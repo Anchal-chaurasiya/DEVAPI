@@ -84,4 +84,9 @@ namespace DevApi.Models
     {
         public int PurchaseOrderNo { get; set; }    
     }
+
+    public class UpdatePurchaseOrderPaymentDto {
+        public Guid PurchaseGuid { get; set; }
+        public List<PurchaseOrderPaymentReqDto>purchaseOrderPaymentReqDtos { get; set; } = new List<PurchaseOrderPaymentReqDto>();
+    }
     }
