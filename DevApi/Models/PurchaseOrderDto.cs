@@ -29,8 +29,8 @@ namespace DevApi.Models
     }
     public class PurchaseOrderDetailReqDto 
     {
-        public Guid PurchaseDetailGuid { get; set; }
-        public long PurchaseDetailId { get; set; }
+        public Guid? PurchaseDetailGuid { get; set; }
+        public long? PurchaseDetailId { get; set; }
         public long PurchaseId { get; set; }
         public int Sno { get; set; }
         public long ItemId { get; set; }
@@ -48,9 +48,9 @@ namespace DevApi.Models
     }
     public class PurchaseOrderPaymentReqDto
     {
-        public Guid PurchasePaymentGuid { get; set; }
-        public long PurchasePaymentId { get; set; }
-        public long PurchaseId { get; set; }
+        public Guid? PurchasePaymentGuid { get; set; }
+        public long? PurchasePaymentId { get; set; }
+        public long? PurchaseId { get; set; }
         public decimal Amount { get; set; }
         public string PaymentMode { get; set; }
         public string? RefrenceNo { get; set; }

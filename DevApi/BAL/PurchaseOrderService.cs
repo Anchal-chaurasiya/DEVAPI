@@ -17,8 +17,7 @@ namespace DevApi.BAL
 
             // Main purchase order fields
             queryParameter.Add("@ProcId", 1);
-            queryParameter.Add("@PurchaseGuid", request.Data.PurchaseGuid);
-            queryParameter.Add("@PurchaseId", request.Data.PurchaseId);
+           
             queryParameter.Add("@VendorId", request.Data.VendorId);
             queryParameter.Add("@PurchaseOrderNo", request.Data.PurchaseOrderNo);
             queryParameter.Add("@PlaceOfSupply", request.Data.PlaceOfSupply);
