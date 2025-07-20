@@ -111,10 +111,11 @@ namespace DevApi.BAL
             queryParameter.Add("@ProcId", 6);
 
             queryParameter.Add("@PurchaseGuid", request.Data.PurchaseGuid);
-           
-
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
+            queryParameter.Add("@McompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@CreatedBy", request.UserId);
             // Serialize details and payments as JSON (if your proc expects JSON)
-          
+
             queryParameter.Add("@PurchaseOrderPaymentsJson",
                 Newtonsoft.Json.JsonConvert.SerializeObject(request.Data.purchaseOrderPaymentReqDtos));
 
