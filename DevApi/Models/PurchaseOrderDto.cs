@@ -72,6 +72,7 @@ namespace DevApi.Models
              return   TotalAmount-PaidAmount;
             }
         }
+        public string CreatedDate { get; set; }
 
     }
 
