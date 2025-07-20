@@ -36,7 +36,12 @@ namespace DevApi.Controllers
             var response = _purchaseOrderService.UpdatePurchaseOrder(request);
             return Ok(response);
         }
-
+        [HttpPost("MaxPurchaseNoOrderService")]
+        public ActionResult<CommonResponseDto<MaxPurchaseOrderNoDto>> GetMaxPurchaseOrderNo([FromBody] CommonRequestDto<int> request)
+        {
+            var response = _purchaseOrderService.MaxPurchaseORderNo(request);
+            return Ok(response);
+        }
 
     }
 }

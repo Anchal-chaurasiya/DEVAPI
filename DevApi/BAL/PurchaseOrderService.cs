@@ -86,5 +86,19 @@ namespace DevApi.BAL
             response.Message = "Success";
             return response;
         }
+        public CommonResponseDto<MaxPurchaseOrderNoDto> MaxPurchaseORderNo(CommonRequestDto<int> request)
+        {
+            var response = new CommonResponseDto<MaxPurchaseOrderNoDto>();
+            string proc = "Proc_SavePurchaseOrder";
+            var queryParameter = new Dapper.DynamicParameters();
+            queryParameter.Add("@ProcId", 5);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
+            queryParameter.Add("@McompanyGuid", request.MCompanyGuid);
+            var list = DBHelperDapper.GetAllModel<MaxPurchaseOrderNoDto>(proc, queryParameter);
+            response.Data = list;
+            response.Flag = 1;
+            response.Message = "Success";
+            return response;
+        }
     }
 }

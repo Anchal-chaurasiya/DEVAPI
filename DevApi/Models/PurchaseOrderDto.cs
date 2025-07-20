@@ -80,4 +80,8 @@ namespace DevApi.Models
         public Guid PurchaseGuid { get; set; }
         public string CancelRemark { get; set; }
     }
+    public class MaxPurchaseOrderNoDto
+    {
+        public int PurchaseOrderNo { get; set; }    
+    }
     }
