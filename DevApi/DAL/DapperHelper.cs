@@ -1,7 +1,9 @@
 ﻿using Dapper;
+using DevApi.Models.Common;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -157,5 +159,32 @@ namespace MyApp.Models
                 return default;
             }
         }
+
+        public static CommonResponseDto<List<T>> GetPagedModelList<T>(
+    string spName,
+    DynamicParameters parameters)
+        {
+            var response = new CommonResponseDto<List<T>>();
+
+            using (SqlConnection objConnection = new SqlConnection(connection()))
+            {
+                objConnection.Open();
+                using (var multi = objConnection.QueryMultiple(spName, parameters, commandType: CommandType.StoredProcedure))
+                {
+                    var dataList = multi.Read<T>().ToList();
+                    var pageInfo = multi.ReadFirstOrDefault<PageInfoDto>();
+
+                    response.Data = dataList;
+                    response.PageSize = pageInfo?.PageSize ?? 1;
+                    response.PageRecordCount = pageInfo?.PageRecordCount ?? 10;
+                    response.TotalRecordCount = pageInfo?.TotalRecordCount ?? dataList.Count;
+                    response.Flag = 1;
+                    response.Message = "Success";
+                }
+            }
+
+            return response;
+        }
+
     }
 } 

@@ -55,4 +55,29 @@ namespace DevApi.Models
         public string PaymentMode { get; set; }
         public string? RefrenceNo { get; set; }
     }
+
+    public class PurchaseOrderListDto {
+        public Guid PurchaseGuid { get; set; }
+        public long PurchaseId { get; set; }
+        public int PurchaseOrderNo { get; set; }
+        public string CustomerCode { get; set; }
+        public string CustomerName { get; set; }
+        public string RefNo { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsCancel { get; set; }
+        public decimal TotalAmount { get; set; }
+        public decimal PaidAmount { get; set; } 
+        public decimal DueAmount { get
+            {
+             return   TotalAmount-PaidAmount;
+            }
+        }
+
+    }
+
+    public class PurchaseOrderUpdateDto
+    {
+        public Guid PurchaseGuid { get; set; }
+        public string CancelRemark { get; set; }
+    }
     }

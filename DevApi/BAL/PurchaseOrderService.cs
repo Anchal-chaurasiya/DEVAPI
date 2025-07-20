@@ -33,7 +33,7 @@ namespace DevApi.BAL
             queryParameter.Add("@AddressId", request.Data.AddressId);
             queryParameter.Add("@IsActive", request.Data.IsActive);
             queryParameter.Add("@IsCancel", request.Data.IsCancel);
-            queryParameter.Add("@CreatedBy", request.Data.CreatedBy);
+            queryParameter.Add("@CreatedBy", request.UserId);
             queryParameter.Add("@Remarks", request.Data.Remarks);
             queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             queryParameter.Add("@McompanyGuid", request.MCompanyGuid);
@@ -48,6 +48,42 @@ namespace DevApi.BAL
             response.Data = result;
             response.Flag = result.Flag == 1 ? 1 : 0;
             response.Message = result.Message;
+            return response;
+        }
+
+        public CommonResponseDto<List<PurchaseOrderListDto>> GetPurchaseOrderList(CommonRequestDto<int> request)
+        {
+            var response = new CommonResponseDto<List<PurchaseOrderListDto>>();
+            string proc = "Proc_SavePurchaseOrder";
+            var queryParameter = new Dapper.DynamicParameters();
+            queryParameter.Add("@ProcId", 3);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
+            queryParameter.Add("@McompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@PageNumber", request.PageSize);
+            queryParameter.Add("@PageRecordCount", request.PageRecordCount);
+
+            var list = DBHelperDapper.GetPagedModelList<PurchaseOrderListDto>(proc, queryParameter);
+            response = list;
+            response.Flag = 1;
+            response.Message = "Success";
+            return response;
+        }
+        public CommonResponseDto<ValidationMessageDto> UpdatePurchaseOrder(CommonRequestDto<PurchaseOrderUpdateDto> request)
+        {
+            var response = new CommonResponseDto<ValidationMessageDto>();
+            string proc = "Proc_SavePurchaseOrder";
+            var queryParameter = new Dapper.DynamicParameters();
+            queryParameter.Add("@ProcId", 4);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
+            queryParameter.Add("@McompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@PurchaseGuid", request.Data.PurchaseGuid);
+            queryParameter.Add("@CancelRemark", request.Data.CancelRemark);
+            queryParameter.Add("@CreatedBy", request.UserId);
+          
+            var list = DBHelperDapper.GetAllModel<ValidationMessageDto>(proc, queryParameter);
+            response.Data = list;
+            response.Flag = 1;
+            response.Message = "Success";
             return response;
         }
     }

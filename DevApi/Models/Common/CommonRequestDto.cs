@@ -5,6 +5,7 @@ namespace DevApi.Models.Common
         public int? CompanyId { get; set; }
         public int PageSize { get; set; }
         public int PageRecordCount { get; set; }
+       
         public T Data { get; set; } // Accepts any DTO type
 
         public long UserId { get; set; }
