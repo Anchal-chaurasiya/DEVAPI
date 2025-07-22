@@ -90,4 +90,51 @@ namespace DevApi.Models
         public Guid PurchaseGuid { get; set; }
         public List<PurchaseOrderPaymentReqDto>purchaseOrderPaymentReqDtos { get; set; } = new List<PurchaseOrderPaymentReqDto>();
     }
+
+    #region THIS DTO ONLY USE FOR VIEW ON UI SIDE
+    public class PurchaseOrderViewDto
+    {
+        public string CustomerCode { get; set; }
+        public string CustomerName { get; set; }
+        public string ContactPersonName { get; set; }
+        public string ContachPersonEmail { get; set; }
+        public string ContachPersonNo { get; set; }
+        public string Address { get; set; }
+        public string RefNo { get; set; }
+        public string PlaceOfSupply { get; set; }
+        public DateTime PurchaseOrderDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
+        public int ShippingTerm { get; set; }
+        public int PaymentTerm { get; set; }
+        public decimal TotalAmount { get; set; }
+        public List<PurchaseItemViewDto> Items { get; set; }
+        public List<PurchasePaymenViewtDto> Payments { get; set; }
+
+        public class PurchaseItemViewDto
+        {
+            public int Sno { get; set; }
+            public string ItemCode { get; set; }
+            public string ItemName { get; set; }
+            public decimal Qty { get; set; }
+            public decimal Price { get; set; }
+            public decimal DiscountPercentage { get; set; }
+            public decimal DiscountAmount { get; set; }
+            public decimal IGSTRate { get; set; }
+            public decimal IGSTAmount { get; set; }
+            public decimal CGSTRate { get; set; }
+            public decimal CGSTAmount { get; set; }
+            public decimal SGSTRate { get; set; }
+            public decimal SGSTAmount { get; set; }
+        }
+        public class PurchasePaymenViewtDto
+        {
+            public decimal Amount { get; set; }
+            public string PaymentMode { get; set; }
+            public string RefrenceNo { get; set; }
+            public DateTime CreatedOn { get; set; }
+        }
     }
+
+    #endregion
+
+}

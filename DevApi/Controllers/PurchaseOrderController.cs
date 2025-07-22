@@ -50,6 +50,12 @@ namespace DevApi.Controllers
             return Ok(response);
         }
 
+        [HttpPost("ViewPurchaseOrderService")]
+        public ActionResult<CommonResponseDto<PurchaseOrderViewDto>> PurchaseOrderView([FromBody] CommonRequestDto<Guid> request)
+        {
+            var response = _purchaseOrderService.PurchaseOrderView(request);
+            return Ok(response);
+        }
 
 
     }

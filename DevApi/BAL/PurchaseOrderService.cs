@@ -125,5 +125,20 @@ namespace DevApi.BAL
             response.Message = result.Message;
             return response;
         }
+        public CommonResponseDto<PurchaseOrderViewDto> PurchaseOrderView(CommonRequestDto<Guid> request)
+        {
+            var response = new CommonResponseDto<PurchaseOrderViewDto>();
+            string proc = "Proc_SavePurchaseOrder";
+            var queryParameter = new Dapper.DynamicParameters();
+            queryParameter.Add("@ProcId", 2);
+            queryParameter.Add("@PurchaseGuid", request.Data);
+            queryParameter.Add("@CompanyGuid", request.CompanyGuid);
+            queryParameter.Add("@McompanyGuid", request.MCompanyGuid);
+            var list = DBHelperDapper.GetModelFromJson<PurchaseOrderViewDto>(proc, queryParameter);
+            response.Data = list;
+            response.Flag = 1;
+            response.Message = "Success";
+            return response;
+        }
     }
 }
