@@ -94,6 +94,7 @@ namespace DevApi.Models
     #region THIS DTO ONLY USE FOR VIEW ON UI SIDE
     public class PurchaseOrderViewDto
     {
+        public int PurchaseOrderNo { get; set; }
         public string CustomerCode { get; set; }
         public string CustomerName { get; set; }
         public string ContactPersonName { get; set; }
