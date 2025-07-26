@@ -21,6 +21,9 @@ namespace MyApp.Models
         public int PaymentTermType { get; set; }
         public string? PaymentTermTypeName { get; set; }
         public string GSTType{ get; set; }
+        public string? ContactPersonName { get; set; }
+        public string? ContachPersonNo { get; set; }
+        public string? ContachPersonEmail { get; set; }
         public List<CustomerAddressDto> Addresses { get; set; }
     }
 
@@ -87,7 +90,10 @@ namespace MyApp.Models
         public string City { get; set; }
         public string StateName { get; set; }
         public int StateId{ get; set; }
-         public string AddressTypeName
+        public string? ContactPersonName { get; set; }
+        public string? ContachPersonNo { get; set; }
+        public string? ContachPersonEmail { get; set; }
+        public string AddressTypeName
         {
             get
             {
