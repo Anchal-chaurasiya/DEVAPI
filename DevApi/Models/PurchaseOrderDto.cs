@@ -126,6 +126,7 @@ namespace DevApi.Models
             public decimal CGSTAmount { get; set; }
             public decimal SGSTRate { get; set; }
             public decimal SGSTAmount { get; set; }
+            public decimal TotalAmount { get; set; }
         }
         public class PurchasePaymenViewtDto
         {
