@@ -29,6 +29,9 @@ namespace MyApp.BAL
             queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             queryParameter.Add("@ShippingTermType", customer.ShippingTermType);
             queryParameter.Add("@PaymentTermType", customer.PaymentTermType);
+            queryParameter.Add("@ContactPersonName", customer.ContactPersonName);
+            queryParameter.Add("@ContachPersonNo", customer.ContachPersonNo);
+            queryParameter.Add("@ContachPersonEmail", customer.ContachPersonEmail);
             queryParameter.Add("@GSTType", customer.GSTType);
             queryParameter.Add("@AddressList",JsonConvert.SerializeObject( customer.Addresses));
 
