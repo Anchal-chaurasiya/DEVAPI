@@ -100,7 +100,10 @@ namespace DevApi.Models
         public string ContactPersonName { get; set; }
         public string ContachPersonEmail { get; set; }
         public string ContachPersonNo { get; set; }
-        public string Address { get; set; }
+        public string BAddress { get; set; }
+        public string SAddress { get; set; }
+        public string BStateName { get; set; }
+        public string SStateName { get; set; }
         public string RefNo { get; set; }
         public string PlaceOfSupply { get; set; }
         public DateTime PurchaseOrderDate { get; set; }
