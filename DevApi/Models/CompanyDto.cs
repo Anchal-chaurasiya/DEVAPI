@@ -34,6 +34,9 @@ namespace DevApi.Models
         public string? SwiftCode { get; set; }
         public string? UPIId { get; set; }
         public string? StateName { get; set; }
-       
+
+        public string ? BStateName { get; set; }
+        public string? SStateName { get; set; }
+
     }
 }
