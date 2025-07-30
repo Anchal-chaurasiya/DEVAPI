@@ -37,6 +37,7 @@ namespace DevApi.BAL
             queryParameter.Add("@Remarks", request.Data.Remarks);
             queryParameter.Add("@CompanyGuid", request.CompanyGuid);
             queryParameter.Add("@McompanyGuid", request.MCompanyGuid);
+            queryParameter.Add("@PurchaseType", request.Data.PurchaseType);
 
             // Serialize details and payments as JSON (if your proc expects JSON)
             queryParameter.Add("@PurchaseOrderDetailsJson", 

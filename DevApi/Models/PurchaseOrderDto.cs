@@ -23,6 +23,7 @@ namespace DevApi.Models
         public decimal TotalAmount { get; set; }
         public bool IsCancel{ get; set; }
         public long AddressId{ get; set; }
+        public string PurchaseType{ get; set; }
         public List<PurchaseOrderDetailReqDto>purchaseOrderDetailReqDtos { get; set; } = new List<PurchaseOrderDetailReqDto>();
         public List<PurchaseOrderPaymentReqDto> purchaseOrderPaymentReqDtos { get; set; } = new List<PurchaseOrderPaymentReqDto>();
 
@@ -111,6 +112,7 @@ namespace DevApi.Models
         public int ShippingTerm { get; set; }
         public int PaymentTerm { get; set; }
         public decimal TotalAmount { get; set; }
+        public string PurchaseType { get; set; }
         public List<PurchaseItemViewDto> Items { get; set; }
         public List<PurchasePaymenViewtDto> Payments { get; set; }
 
