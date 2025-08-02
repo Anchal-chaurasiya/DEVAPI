@@ -35,6 +35,7 @@ namespace DevApi.Models
         public long PurchaseId { get; set; }
         public int Sno { get; set; }
         public long ItemId { get; set; }
+        public string? ItemDescription{ get; set; }
         public decimal Price { get; set; }
         public decimal Qty { get; set; }
         public decimal? DiscountPercentage { get; set; }
