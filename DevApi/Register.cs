@@ -22,6 +22,7 @@ namespace DevApi
             services.AddTransient<CompanyService>();
             services.AddTransient<SPTermService>();
             services.AddTransient<PurchaseOrderService>();
+            services.AddTransient<SellOrderService>();
         }
     }
 }
