@@ -30,6 +30,7 @@ namespace DevApi.BAL
             queryParameter.Add("@ContachPersonEmail", request.Data.ContachPersonEmail);
             queryParameter.Add("@TotalAmount", request.Data.TotalAmount);
             queryParameter.Add("@AddressId", request.Data.AddressId);
+            queryParameter.Add("@SAddressId", request.Data.SAddressId);
             queryParameter.Add("@IsActive", request.Data.IsActive);
             queryParameter.Add("@IsCancel", request.Data.IsCancel);
             queryParameter.Add("@CreatedBy", request.UserId);

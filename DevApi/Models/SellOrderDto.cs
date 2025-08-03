@@ -23,6 +23,7 @@ namespace DevApi.Models
         public decimal TotalAmount { get; set; }
         public bool IsCancel { get; set; }
         public long AddressId { get; set; }
+        public long SAddressId { get; set; }
         public string SellType { get; set; }
         public List<SellOrderDetailReqDto> SellOrderDetailReqDtos { get; set; } = new List<SellOrderDetailReqDto>();
         public List<SellOrderPaymentReqDto> SellOrderPaymentReqDtos { get; set; } = new List<SellOrderPaymentReqDto>();
